@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Post from '../Post/Post.js'
+import IndexItem from '../IndexItem/IndexItem.js'
+import Header from '../Header/Header.js'
 
 class App extends Component {
   constructor(props){
@@ -13,7 +15,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    fetch('https://www.reddit.com/r/programminghumor.json')
+    fetch('https://www.reddit.com/r/programmerhumor.json')
       .then(resp => {
         return resp.json()
       })
@@ -46,21 +48,25 @@ class App extends Component {
   render() {
     return(
     <div className='App'>
-    {
-      this.state.currentPost ?
-        (
-            <Post post={this.state.currentPost} returnHome={() => this.returnHome()}/>
-        ) : (
-        <div>{
-          this.state.posts.map((post, index) => {
-            return(
-              <div key={index} onClick={event => this.handleOnClick(post)}>
-                {post.title}
-              </div>
-            )
-          })}
-        </div> )
-    }
+      <Header returnHome={() => this.returnHome()}/>
+      {
+        this.state.currentPost ?
+          (
+              <Post post={this.state.currentPost}/>
+          ) : (
+          <div>{
+            this.state.posts.map((post, index) => {
+              return(
+                <IndexItem 
+                  key={index} 
+                  index={index}
+                  onClick={event => this.handleOnClick(post)} 
+                  title={post.title}
+                  />
+              )
+            })}
+          </div> )
+      }
     </div>
     )
   } 
