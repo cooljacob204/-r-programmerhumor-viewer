@@ -15,6 +15,7 @@ class App extends Component {
   }
 
   componentDidMount(){
+    document.title = "/r/programmerhumor"
     fetch('https://www.reddit.com/r/programmerhumor.json')
       .then(resp => {
         return resp.json()
@@ -50,7 +51,7 @@ class App extends Component {
 
   render() {
     return(
-    <div className='App'>
+      <div className='App'>
       <Header returnHome={() => this.returnHome()}/>
       {
         this.state.currentPost ?
