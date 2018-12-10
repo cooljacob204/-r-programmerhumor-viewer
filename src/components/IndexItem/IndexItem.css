@@ -2,30 +2,82 @@
   width: 100%;
   margin: 0;
   margin-bottom: 6px;
-  margin-left: 5px;
-  height: 50px;
-}
-
-.IndexItem:hover{
-  background-color: lightblue;
+  margin-left: 0px;
+  overflow: auto;
+  min-height: 70px
 }
 
 .IndexItem-index{
   float: left;
   margin: 10px; 
-  margin-top: 15px; 
+  margin-top: 25px;
+  margin-left: 0px;
+  width: 20px;
+  text-align: right;
+}
+
+.IndexItem-preview{
+  float: left;
+  width: 70px !important;
+  font-size: 70px;
+  margin-right: 4px;
 }
 
 .IndexItem-title{
-  cursor: pointer;
   font-size: 20px;
-  margin-bottom: 1px;
 }
 
-.IndexItem-Dropdown{
-  font-size: 25px;
+.IndexItem-title-span{
+  cursor: pointer;
+}
+
+.IndexItem-bottom{
+  width: 100%;
   float: left;
-  width: 23px;
-  height: 23px;
+}
+  
+.IndexItem-dropdown-button{
+  font-size: 30px;
   vertical-align: top !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  float: left;
+  cursor: pointer;
+}
+
+.IndexItem-dropdown-true{
+  width: 100%;
+}
+
+.IndexItem-dropdown-image{
+  width:50%;
+}
+
+.IndexItem-dropdown-text{
+  width:50%;
+}
+
+.IndexItem-right{
+  width: 80%;
+  float: left;
+}
+
+.IndexItem-author{
+  font-size: 10px;
+  color: grey;
+  margin: 0;
+}
+
+.IndexItem-info{
+  float: left;
+  margin-left: 4px;
+}
+
+.IndexItem-info-text{
+  font-size: 10px;
+  float: left;
+  color: grey;
 }

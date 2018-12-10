@@ -24,7 +24,10 @@ class App extends Component {
           return ({
             title: child.data.title,
             text: child.data.selftext,
-            url: child.data.url
+            url: child.data.url,
+            author: child.data.author,
+            thumbnail: child.data.thumbnail,
+            comments: child.data.permalink,
           })
         })
         this.setState({
@@ -62,6 +65,11 @@ class App extends Component {
                   index={index}
                   onClick={event => this.handleOnClick(post)} 
                   title={post.title}
+                  author={post.author}
+                  thumbnail={post.thumbnail}
+                  url={post.url}
+                  text={post.text}
+                  comments={post.comments}
                   />
               )
             })}
