@@ -1,3 +1,17 @@
+ # Project to remake /r/programmerhumor's front page with react.
+See a preview at https://programmerhumor.lfp2.gg/
+
+
+
+
+
+ # 
+ #
+ #
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
