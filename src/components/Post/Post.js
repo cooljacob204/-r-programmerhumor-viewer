@@ -3,7 +3,7 @@ import Image from '../Image/Image.js'
 import TextPost from '../TextPost/TextPost.js'
 import './Post.css';
 
-const Post = (props) => {
+export default function Post(props) {
   const isImage = props.post.url.match(/(.jpg|.gif|.jpeg|.png)$/);
   return (
     <div>
@@ -20,5 +20,3 @@ const Post = (props) => {
     </div>
   )
 }
-
-export default Post
