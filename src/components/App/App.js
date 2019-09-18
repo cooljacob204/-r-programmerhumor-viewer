@@ -1,20 +1,14 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from '../Post/Post.js'
 import IndexItem from '../IndexItem/IndexItem.js'
 import Header from '../Header/Header.js'
 
-class App extends Component {
-  constructor(props){
-    super(props)
+export default function App(props) {
+  const [posts, setPosts] = useState([]);
+  const [currentPost, setCurrentPost] = useState(null);
 
-    this.state = {
-      posts: [],
-      currentPost: null
-    }
-  }
-
-  componentDidMount(){
+  useEffect(() => {
     document.title = "/r/programmerhumor"
     fetch('https://www.reddit.com/r/programmerhumor.json')
       .then(resp => {
@@ -31,54 +25,53 @@ class App extends Component {
             comments: child.data.permalink,
           })
         })
-        this.setState({
-          posts: posts
-        })
+        updatePosts(posts)
       })
+  });
+
+  function updatePosts(posts){
+    setPosts(posts)
   }
 
-  handleOnClick(post){
-    this.setState({
-      currentPost: post
-    })
+  function updateCurrentPost(post) {
+    setCurrentPost(post)
   }
 
-  returnHome(){
-    this.setState({
-      currentPost: null
-    })
+  function handleOnClick(post){
+    updateCurrentPost(post)
   }
 
-  render() {
-    return(
-      <div className='App'>
-      <Header returnHome={() => this.returnHome()}/>
-      {
-        this.state.currentPost ?
-          (
-              <Post post={this.state.currentPost}/>
-          ) : (
-          <div>{
-            this.state.posts.map((post, index) => {
-              return(
-                <IndexItem 
-                  key={index} 
-                  index={index}
-                  onClick={event => this.handleOnClick(post)} 
-                  title={post.title}
-                  author={post.author}
-                  thumbnail={post.thumbnail}
-                  url={post.url}
-                  text={post.text}
-                  comments={post.comments}
-                  />
-              )
-            })}
-          </div> )
-      }
-    </div>
-    )
-  } 
-}
+  function returnHome(){
+    updateCurrentPost(null)
+  }
 
-export default App;
+  return(
+    <div className='App'>
+    <Header returnHome={() => returnHome()}/>
+    {
+      currentPost ?
+        (
+            <Post post={currentPost}/>
+        ) : (
+        <div>{
+          posts.map((post, index) => {
+            return(
+              <IndexItem 
+                key={index} 
+                index={index}
+                onClick={() => handleOnClick(post)} 
+                title={post.title}
+                author={post.author}
+                thumbnail={post.thumbnail}
+                url={post.url}
+                text={post.text}
+                comments={post.comments}
+                />
+            )
+          })}
+        </div> )
+    }
+  </div>
+  )
+} 
+
