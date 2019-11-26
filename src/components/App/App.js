@@ -27,7 +27,7 @@ export default function App(props) {
         })
         updatePosts(posts)
       })
-  });
+  }, []);
 
   function updatePosts(posts){
     setPosts(posts)
